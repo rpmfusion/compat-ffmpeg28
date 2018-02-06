@@ -1,12 +1,18 @@
 %if 0%{?rhel}
-%global _without_frei0r   1
 %global _without_vpx      1
 %endif
+%global _without_frei0r   1
+%global _without_ladspa   1
+%global _without_openal   1
+%global _without_pulse    1
+%global _without_vaapi    1
+%global _without_x264     1
+%global _without_x265     1
 
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
 Version:        2.8.13
-Release:        2%{?dist}
+Release:        3%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -41,7 +47,6 @@ BuildRequires:  libvdpau-devel
 BuildRequires:  libvorbis-devel
 %{?!_without_vpx:BuildRequires: libvpx-devel >= 0.9.1}
 %ifarch %{ix86} x86_64
-BuildRequires:  libXvMC-devel
 %{?!_without_vaapi:BuildRequires: libva-devel >= 0.31.0}
 %endif
 %{!?_without_amr:BuildRequires: opencore-amr-devel vo-amrwbenc-devel}
@@ -52,7 +57,6 @@ BuildRequires:  opus-devel
 %{!?_without_pulse:BuildRequires: pulseaudio-libs-devel}
 BuildRequires:  perl(Pod::Man)
 BuildRequires:  schroedinger-devel
-BuildRequires:  SDL-devel
 BuildRequires:  soxr-devel
 BuildRequires:  speex-devel
 BuildRequires:  subversion
@@ -65,6 +69,19 @@ BuildRequires:  zlib-devel
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
 %endif
+
+# This package is specially usefull for firefox
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1435212
+Supplements: firefox
+
+# Obsoletes/Provides introduced in f28
+Provides: ffmpeg-libs%{_isa} = %{version}-100
+Obsoletes: ffmpeg-libs%{_isa} < %{version}-100
+Provides: ffmpeg-compat%{_isa} = %{version}-100
+Obsoletes: ffmpeg-compat%{_isa} < %{version}-100
+Provides: compat-ffmpeg%{_isa} = 1:%{version}-100
+Obsoletes: compat-ffmpeg%{_isa} < 1:%{version}-100
+
 
 %description
 FFmpeg is a complete and free Internet live audio and video
@@ -216,6 +233,11 @@ fi
 
 
 %changelog
+* Tue Feb 20 2018 Nicolas Chauvet <kwizart@gmail.com> - 2.8.13-3
+- Clean uneeded dependencies
+- Add supplements for firefox (until it gains ffmpeg-3.5 support)
+- Add Obsoletes/Provides
+
 * Fri Feb 02 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.8.13-2
 - Rebase ffmpeg to compat-ffmpeg28
 
