@@ -79,8 +79,8 @@ Provides: ffmpeg-libs%{_isa} = %{version}-100
 Obsoletes: ffmpeg-libs%{_isa} < %{version}-100
 Provides: ffmpeg-compat%{_isa} = %{version}-100
 Obsoletes: ffmpeg-compat%{_isa} < %{version}-100
-Provides: compat-ffmpeg%{_isa} = 1:%{version}-100
-Obsoletes: compat-ffmpeg%{_isa} < 1:%{version}-100
+Provides: compat-ffmpeg-libs%{_isa} = 1:%{version}-100
+Obsoletes: compat-ffmpeg-libs%{_isa} < 1:%{version}-100
 
 
 %description
