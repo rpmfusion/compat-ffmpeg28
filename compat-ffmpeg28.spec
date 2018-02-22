@@ -11,8 +11,8 @@
 
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
-Version:        2.8.13
-Release:        3%{?dist}
+Version:        2.8.14
+Release:        1%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -233,6 +233,9 @@ fi
 
 
 %changelog
+* Thu Feb 22 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.8.14-1
+- Update to 2.8.14
+
 * Tue Feb 20 2018 Nicolas Chauvet <kwizart@gmail.com> - 2.8.13-3
 - Clean uneeded dependencies
 - Add supplements for firefox (until it gains ffmpeg-3.5 support)
