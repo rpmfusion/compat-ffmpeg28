@@ -12,7 +12,7 @@
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
 Version:        2.8.14
-Release:        1%{?dist}
+Release:        2%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -69,10 +69,6 @@ BuildRequires:  zlib-devel
 %ifarch %{ix86} x86_64
 BuildRequires:  yasm
 %endif
-
-# This package is specially usefull for firefox
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1435212
-Supplements: firefox
 
 # Obsoletes/Provides introduced in f28
 Provides: ffmpeg-libs%{_isa} = %{version}-100
@@ -233,6 +229,9 @@ fi
 
 
 %changelog
+* Tue May 08 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.8.14-2
+- Drop supplements for firefox
+
 * Thu Feb 22 2018 Leigh Scott <leigh123linux@googlemail.com> - 2.8.14-1
 - Update to 2.8.14
 
