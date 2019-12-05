@@ -70,14 +70,6 @@ BuildRequires:  zlib-devel
 BuildRequires:  yasm
 %endif
 
-# Obsoletes/Provides introduced in f28
-Provides: ffmpeg-libs = %{version}-100
-Obsoletes: ffmpeg-libs < %{version}-100
-Provides: ffmpeg-compat = %{version}-100
-Obsoletes: ffmpeg-compat < %{version}-100
-Provides: compat-ffmpeg-libs = 1:%{version}-100
-Obsoletes: compat-ffmpeg-libs < 1:%{version}-100
-
 
 %description
 FFmpeg is a complete and free Internet live audio and video
