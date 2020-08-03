@@ -227,7 +227,7 @@ fi
 %changelog
 * Sun Aug 02 2020 Leigh Scott <leigh123linux@gmail.com> - 2.8.17-2
 - Rebuild for libdc1394
-- Disable LTO
+- Disable LTO for x86_64 
 
 * Thu Jul 09 2020 Leigh Scott <leigh123linux@gmail.com> - 2.8.17-1
 - Update to 2.8.17
