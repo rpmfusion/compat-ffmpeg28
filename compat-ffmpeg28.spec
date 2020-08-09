@@ -12,7 +12,7 @@
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
 Version:        2.8.17
-Release:        2%{?dist}
+Release:        3%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -158,14 +158,13 @@ This package contains development files for %{name}
 sed -i "s|check_host_cflags -O3|check_host_cflags $RPM_OPT_FLAGS|" configure
 
 %build
-%ifarch x86_64
-# Fails due to asm issue
-%define _lto_cflags %{nil}
-%endif
 %{ff_configure}\
     --shlibdir=%{_libdir} \
     --disable-doc \
     --disable-ffmpeg --disable-ffplay --disable-ffprobe --disable-ffserver \
+%if  0%{?fedora} >= 33
+    --enable-lto \
+%endif
 %ifarch %{ix86}
     --cpu=%{_target_cpu} \
 %endif
@@ -225,9 +224,12 @@ fi
 
 
 %changelog
+* Sun Aug 09 2020 Leigh Scott <leigh123linux@gmail.com> - 2.8.17-3
+- Enable LTO for x86_64
+
 * Sun Aug 02 2020 Leigh Scott <leigh123linux@gmail.com> - 2.8.17-2
 - Rebuild for libdc1394
-- Disable LTO for x86_64 
+- Disable LTO for x86_64
 
 * Thu Jul 09 2020 Leigh Scott <leigh123linux@gmail.com> - 2.8.17-1
 - Update to 2.8.17
