@@ -12,7 +12,7 @@
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
 Version:        2.8.17
-Release:        3%{?dist}
+Release:        4%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -224,6 +224,9 @@ fi
 
 
 %changelog
+* Wed Feb 03 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.8.17-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Sun Aug 09 2020 Leigh Scott <leigh123linux@gmail.com> - 2.8.17-3
 - Enable LTO for x86_64
 
