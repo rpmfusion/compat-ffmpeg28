@@ -11,8 +11,8 @@
 
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
-Version:        2.8.17
-Release:        5%{?dist}
+Version:        2.8.18
+Release:        1%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -224,6 +224,9 @@ fi
 
 
 %changelog
+* Thu Oct 21 2021 Leigh Scott <leigh123linux@gmail.com> - 2.8.18-1
+- Update to 2.8.18
+
 * Mon Aug 02 2021 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 2.8.17-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
