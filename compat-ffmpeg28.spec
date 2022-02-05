@@ -12,7 +12,7 @@
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
 Version:        2.8.18
-Release:        1%{?dist}
+Release:        2%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
 %else
@@ -197,21 +197,22 @@ sed -i "s|check_host_cflags -O3|check_host_cflags $RPM_OPT_FLAGS|" configure
 %make_install V=1
 #Alternative ffmpeg package move headers into a special directory
 if ! [ %{name} == ffmpeg ] ; then
-mkdir -p $RPM_BUILD_ROOT%{_libdir}/%{name}/pkgconfig
-for s in $RPM_BUILD_ROOT/%{_libdir}/*.so ; do 
+mkdir -p %{buildroot}%{_libdir}/%{name}/pkgconfig
+for s in %{buildroot}/%{_libdir}/*.so ; do 
   ffmpegsym=`basename ${s}`
   ffmpeglib=`readlink ${s}`
   echo "Symlink $ffmpeglib"
   ln -fs ../${ffmpeglib} \
-    $RPM_BUILD_ROOT%{_libdir}/%{name}/${ffmpegsym}
+    %{buildroot}%{_libdir}/%{name}/${ffmpegsym}
 done
-rm -rf $RPM_BUILD_ROOT/%{_libdir}/*.so
+rm -rf %{buildroot}/%{_libdir}/*.so
 fi
 
 %ldconfig_scriptlets
 
 %files
-%doc COPYING.* CREDITS README.md
+%doc CREDITS README.md
+%license COPYING.*
 %{_libdir}/lib*.so.*
 
 %files devel
@@ -224,6 +225,9 @@ fi
 
 
 %changelog
+* Sat Feb 05 2022 Leigh Scott <leigh123linux@gmail.com> - 2.8.18-2
+- Rebuild for libvpx
+
 * Thu Oct 21 2021 Leigh Scott <leigh123linux@gmail.com> - 2.8.18-1
 - Update to 2.8.18
 
