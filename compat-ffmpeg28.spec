@@ -11,7 +11,7 @@
 
 Summary:        Digital VCR and streaming server
 Name:           compat-ffmpeg28
-Version:        2.8.20
+Version:        2.8.22
 Release:        1%{?dist}
 %if 0%{?!_without_amr:1}
 License:        GPLv3+
@@ -225,6 +225,9 @@ fi
 
 
 %changelog
+* Sun Oct 29 2023 Leigh Scott <leigh123linux@gmail.com> - 2.8.22-1
+- Update to 2.8.22
+
 * Thu May 26 2022 Leigh Scott <leigh123linux@gmail.com> - 2.8.20-1
 - Update to 2.8.20
 
